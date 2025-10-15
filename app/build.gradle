@@ -5,9 +5,11 @@ android {
     buildToolsVersion "36.1.0"
 
     defaultConfig {
-        applicationId "se.anyro.nfc_reader"
+        applicationId "com.weijian.li"
         minSdkVersion 11
         targetSdkVersion 28
+        versionCode 20251014
+        versionName "2025.10.14"
     }
 
     buildTypes {

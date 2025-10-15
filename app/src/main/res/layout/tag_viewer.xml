@@ -14,22 +14,37 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1">
-    <LinearLayout
-        android:id="@+id/list"
+    android:layout_height="match_parent">
+    <ScrollView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tag_viewer_text"
-            android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:id="@+id/list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:autoLink="email|web"
-            android:text="@string/intro_message" />
-    </LinearLayout>
-</ScrollView>
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tag_viewer_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:autoLink="email|web"
+                android:text="@string/intro_message" />
+        </LinearLayout>
+    </ScrollView>
+    
+    <!-- 请触碰标签提示控件 -->
+    <TextView
+        android:id="@+id/tag_prompt_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="请触碰标签"
+        android:textSize="24sp"
+        android:background="#FFFFFF"
+        android:visibility="gone" />
+</FrameLayout>

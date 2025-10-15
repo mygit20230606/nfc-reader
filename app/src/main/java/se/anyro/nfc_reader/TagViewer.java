@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.anyro.nfc_reader;
+package com.weijian.li;
 
 import java.nio.charset.Charset;
 import java.text.DateFormat;
@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import se.anyro.nfc_reader.record.ParsedNdefRecord;
+import com.weijian.li.record.ParsedNdefRecord;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -44,6 +44,8 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.view.Gravity;
+import android.view.View;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,6 +61,7 @@ public class TagViewer extends Activity {
 
     private static final DateFormat TIME_FORMAT = SimpleDateFormat.getDateTimeInstance();
     private LinearLayout mTagContent;
+    private TextView mTagPromptText; // 请触碰标签提示控件
 
     private NfcAdapter mAdapter;
     private PendingIntent mPendingIntent;
@@ -67,17 +70,60 @@ public class TagViewer extends Activity {
     private AlertDialog mDialog;
 
     private List<Tag> mTags = new ArrayList<>();
+    private ConfigManager mConfigManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tag_viewer);
         mTagContent = (LinearLayout) findViewById(R.id.list);
+        mTagPromptText = (TextView) findViewById(R.id.tag_prompt_text);
         resolveIntent(getIntent());
 
         mDialog = new AlertDialog.Builder(this).setNeutralButton("Ok", null).create();
 
         mAdapter = NfcAdapter.getDefaultAdapter(this);
+        
+        // 初始化配置管理器
+        mConfigManager = ConfigManager.getInstance();
+        mConfigManager.loadConfig(this);
+        
+        // 根据配置控制标签提示控件的显示
+        mTagPromptText.setVisibility(mConfigManager.shouldShowTagPrompt() ? View.VISIBLE : View.GONE);
+        
+        // 根据mytest参数设置标题居中
+        if (mConfigManager.isMytestEnabled()) {
+            try {
+                // 获取ActionBar
+                if (getActionBar() != null) {
+                    // 隐藏默认标题
+                    getActionBar().setDisplayShowTitleEnabled(false);
+                    // 禁用home图标显示
+                    getActionBar().setDisplayShowHomeEnabled(false);
+                    getActionBar().setDisplayUseLogoEnabled(false);
+                    // 启用自定义视图
+                    getActionBar().setDisplayShowCustomEnabled(true);
+                    // 加载预先定义的居中标题布局
+                    View customView = getLayoutInflater().inflate(R.layout.actionbar_title_layout, null);
+                    
+                    // 从ConfigManager获取自定义标题并设置
+                    TextView titleView = (TextView) customView.findViewById(R.id.actionbar_title);
+                    if (titleView != null) {
+                        titleView.setText(mConfigManager.getCustomTitle());
+                    }
+                    
+                    // 设置自定义视图
+                    getActionBar().setCustomView(customView);
+                    // 设置布局参数使其填充整个ActionBar
+                    android.app.ActionBar.LayoutParams params = new android.app.ActionBar.LayoutParams(
+                            android.app.ActionBar.LayoutParams.MATCH_PARENT,
+                            android.app.ActionBar.LayoutParams.MATCH_PARENT);
+                    getActionBar().setCustomView(customView, params);
+                }
+            } catch (Exception e) {
+                // 忽略异常
+            }
+        }
         if (mAdapter == null) {
             showMessage(R.string.error, R.string.no_nfc);
             finish();
@@ -123,6 +169,27 @@ public class TagViewer extends Activity {
             mAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
             mAdapter.enableForegroundNdefPush(this, mNdefPushMessage);
         }
+        
+        // 每次活动恢复时（从浏览器返回），重新根据配置显示提示控件
+        // 并清空之前显示的标签信息
+        if (mTagPromptText != null && mConfigManager != null) {
+            if (mConfigManager.shouldShowTagPrompt()) {
+                // 显示提示控件
+                mTagPromptText.setVisibility(View.VISIBLE);
+                
+                // 清空标签内容，只保留初始的欢迎信息
+                if (mTagContent != null && mTagContent.getChildCount() > 0) {
+                    TextView welcomeText = (TextView) findViewById(R.id.tag_viewer_text);
+                    mTagContent.removeAllViews();
+                    if (welcomeText != null) {
+                        mTagContent.addView(welcomeText);
+                    }
+                }
+                
+                // 清空标签列表
+                mTags.clear();
+            }
+        }
     }
 
     @Override
@@ -157,6 +224,32 @@ public class TagViewer extends Activity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+            // 发现标签后隐藏提示控件
+            if (mTagPromptText != null) {
+                mTagPromptText.setVisibility(View.GONE);
+            }
+            
+            // 清空之前的标签内容（保留初始欢迎信息）
+            if (mTagContent != null && mTagContent.getChildCount() > 1) {
+                TextView welcomeText = (TextView) findViewById(R.id.tag_viewer_text);
+                if (welcomeText != null) {
+                    mTagContent.removeAllViews();
+                    mTagContent.addView(welcomeText);
+                }
+            }
+            // 获取标签ID并转换为字符串格式
+            byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+            String tagId = toHexString(id);
+            
+            // 根据标签ID从配置中获取URL
+            String url = mConfigManager.getUrlForTagId(tagId);
+            
+            // 启动WebViewActivity
+            Intent webIntent = new Intent(this, WebViewActivity.class);
+            webIntent.putExtra("url", url);
+            startActivity(webIntent);
+            
+            // 仍然处理标签数据以便显示
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage[] msgs;
             if (rawMsgs != null) {
@@ -167,7 +260,6 @@ public class TagViewer extends Activity {
             } else {
                 // Unknown tag type
                 byte[] empty = new byte[0];
-                byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
                 Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 byte[] payload = dumpTagData(tag).getBytes();
                 NdefRecord record = new NdefRecord(NdefRecord.TNF_UNKNOWN, empty, id, payload);
@@ -178,6 +270,26 @@ public class TagViewer extends Activity {
             // Setup the views
             buildTagViews(msgs);
         }
+    }
+    
+    /**
+     * 将字节数组转换为十六进制字符串，格式为"xx xx xx xx"
+     * 注意：使用与toHex方法相同的反向字节顺序，这是NFC标签ID的标准格式
+     */
+    private String toHexString(byte[] bytes) {
+        if (bytes == null) return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = bytes.length - 1; i >= 0; --i) {
+            int b = bytes[i] & 0xff;
+            if (b < 0x10) {
+                sb.append('0');
+            }
+            sb.append(Integer.toHexString(b));
+            if (i > 0) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
     }
 
     private String dumpTagData(Tag tag) {
@@ -420,7 +532,10 @@ public class TagViewer extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        // 根据mytest参数决定是否显示菜单
+        if (!mConfigManager.isMytestEnabled()) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+        }
         return true;
     }
     

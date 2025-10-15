@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.anyro.nfc_reader.record;
+package com.weijian.li.record;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import se.anyro.nfc_reader.NdefMessageParser;
-import se.anyro.nfc_reader.R;
+import com.weijian.li.NdefMessageParser;
+import com.weijian.li.R;
 import android.app.Activity;
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;

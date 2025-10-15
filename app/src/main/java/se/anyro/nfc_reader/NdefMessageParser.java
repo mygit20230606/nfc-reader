@@ -13,15 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package se.anyro.nfc_reader;
+package com.weijian.li;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import se.anyro.nfc_reader.record.ParsedNdefRecord;
-import se.anyro.nfc_reader.record.SmartPoster;
-import se.anyro.nfc_reader.record.TextRecord;
-import se.anyro.nfc_reader.record.UriRecord;
+import com.weijian.li.record.ParsedNdefRecord;
+import com.weijian.li.record.SmartPoster;
+import com.weijian.li.record.TextRecord;
+import com.weijian.li.record.UriRecord;
 import android.app.Activity;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;

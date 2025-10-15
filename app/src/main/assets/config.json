@@ -1,0 +1,11 @@
+{
+  "browser_config": {
+    "mytest": 1,
+    "custom_title": "点检"
+  },
+  "nfc_mapping": {
+    "6f 0f 2d f7": "http://192.168.91.2",
+    "29 41 be db": "http://192.168.57.1"
+  },
+  "default_url": "http://192.168.91.2"
+}
