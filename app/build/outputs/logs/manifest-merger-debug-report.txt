@@ -1,0 +1,87 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:1-49:12
+	package
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:18:3-32
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:20:3-29
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:17:11-69
+	android:versionCode
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:19:3-27
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+	android:installLocation
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:21:3-33
+uses-sdk
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+	android:targetSdkVersion
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:15-44
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+		INJECTED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.NFC
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:25:5-62
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:25:22-59
+uses-feature#android.hardware.nfc
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:26:5-57
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:26:19-54
+application
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:28:5-47:19
+	android:label
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:30:7-39
+	android:icon
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:29:7-36
+	android:allowBackup
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:31:7-33
+activity#se.anyro.nfc_reader.TagViewer
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:32:9-46:20
+	android:screenOrientation
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:35:11-47
+	android:label
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:34:11-43
+	android:launchMode
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:37:11-46
+	android:alwaysRetainTaskState
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:36:11-47
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:33:11-35
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:38:13-41:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:39:17-69
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:39:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:40:17-77
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:40:27-74
+intent-filter#action:name:android.nfc.action.TAG_DISCOVERED+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:42:13-45:29
+action#android.nfc.action.TAG_DISCOVERED
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:43:17-75
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:43:25-73
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:44:17-75
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:44:27-73

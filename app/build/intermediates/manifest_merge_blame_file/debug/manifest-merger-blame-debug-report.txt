@@ -1,0 +1,82 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3     Copyright (C) 2012 Adam Nybäck
+4
+5     Licensed under the Apache License, Version 2.0 (the "License");
+6     you may not use this file except in compliance with the License.
+7     You may obtain a copy of the License at
+8
+9          http://www.apache.org/licenses/LICENSE-2.0
+10
+11     Unless required by applicable law or agreed to in writing, software
+12     distributed under the License is distributed on an "AS IS" BASIS,
+13     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14     See the License for the specific language governing permissions and
+15     limitations under the License.
+16-->
+17<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+18    package="se.anyro.nfc_reader"
+19    android:installLocation="auto"
+20    android:versionCode="15"
+21    android:versionName="0.15" >
+22
+23    <uses-sdk
+23-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+24        android:minSdkVersion="11"
+24-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:5-47
+25        android:targetSdkVersion="28" />
+25-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:23:15-44
+26
+27    <uses-permission android:name="android.permission.NFC" />
+27-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:25:5-62
+27-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:25:22-59
+28
+29    <uses-feature android:name="android.hardware.nfc" />
+29-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:26:5-57
+29-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:26:19-54
+30
+31    <application
+31-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:28:5-47:19
+32        android:allowBackup="true"
+32-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:31:7-33
+33        android:debuggable="true"
+34        android:icon="@drawable/icon"
+34-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:29:7-36
+35        android:label="@string/app_name" >
+35-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:30:7-39
+36        <activity
+36-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:32:9-46:20
+37            android:name="se.anyro.nfc_reader.TagViewer"
+37-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:33:11-35
+38            android:alwaysRetainTaskState="true"
+38-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:36:11-47
+39            android:label="@string/app_name"
+39-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:34:11-43
+40            android:launchMode="singleInstance"
+40-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:37:11-46
+41            android:screenOrientation="nosensor" >
+41-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:35:11-47
+42            <intent-filter>
+42-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:38:13-41:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:39:17-69
+43-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:39:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:40:17-77
+45-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:40:27-74
+46            </intent-filter>
+47            <intent-filter>
+47-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:42:13-45:29
+48                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+48-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:43:17-75
+48-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:43:25-73
+49
+50                <category android:name="android.intent.category.DEFAULT" />
+50-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:44:17-75
+50-->C:\Users\Administrator\Desktop\nfc-reader\app\src\main\AndroidManifest.xml:44:27-73
+51            </intent-filter>
+52        </activity>
+53    </application>
+54
+55</manifest>
